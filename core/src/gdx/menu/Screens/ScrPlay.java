@@ -198,12 +198,12 @@ public class ScrPlay implements Screen {
 
     Game game;
     private Texture txDot;
-    private Texture txSquare;
+    private Texture txHero;
     private Texture txEnemy;
     private Sound dropSound;
     private Music rainMusic;
     private SpriteBatch batch;
-    private Sprite sprDot, sprSquare, sprEnemy; // a Sprite allows you to get the bounding rectangle
+    private Sprite sprDot, sprHero, sprEnemy; // a Sprite allows you to get the bounding rectangle
     private OrthographicCamera camera;
     private Array<Sprite> arsprDrop; // use an array of Sprites rather than rectangles
     private Array<Sprite> arsprEnemy;
@@ -218,12 +218,12 @@ public class ScrPlay implements Screen {
         game = _game;
         // load the images for the droplet and the bucket, 64x64 pixels each
         txDot = new Texture(Gdx.files.internal("dot.png"));
-        txSquare = new Texture(Gdx.files.internal("square.png"));
-        txEnemy = new Texture(Gdx.files.internal("enemy.png"));
+        txHero = new Texture(Gdx.files.internal("Hero.png"));
+        txEnemy = new Texture(Gdx.files.internal("Enemy.png"));
         font = new BitmapFont();
         nLives = 3;
         spawnMillis = 1000;
-        sprSquare = new Sprite(txSquare);
+        sprHero = new Sprite(txHero);
         sprDot = new Sprite(txDot);
         sprEnemy = new Sprite(txEnemy);
 
@@ -266,7 +266,7 @@ public class ScrPlay implements Screen {
     public void dispose() {
         // dispose of all the native resources
         txDot.dispose();
-        txSquare.dispose();
+        txHero.dispose();
         dropSound.dispose();
         rainMusic.dispose();
         batch.dispose();
@@ -309,7 +309,7 @@ public class ScrPlay implements Screen {
         // all drops
         batch.begin();
         if (nLives > 0) {
-            batch.draw(sprSquare, sprSquare.getX(), sprSquare.getY());
+            batch.draw(sprHero, sprHero.getX(), sprHero.getY());
             batch.draw(sprEnemy, sprEnemy.getX(), sprEnemy.getY());
 
             for (Sprite sprDrop : arsprDrop) {
@@ -326,30 +326,30 @@ public class ScrPlay implements Screen {
             Vector3 touchPos = new Vector3();
             touchPos.set(Gdx.input.getX(), Gdx.input.getY(), 0);
             camera.unproject(touchPos);
-            sprSquare.setX(touchPos.x - 64 / 2);
+            sprHero.setX(touchPos.x - 64 / 2);
         }
         /*if(Gdx.input.isKeyPressed(Keys.LEFT)) bucket.x -= 200 * Gdx.graphics.getDeltaTime();
          if(Gdx.input.isKeyPressed(Keys.RIGHT)) bucket.x += 200 * Gdx.graphics.getDeltaTime();*/
         if (Gdx.input.isKeyPressed(Keys.LEFT)) {
-            sprSquare.setX(sprSquare.getX() - 500 * Gdx.graphics.getDeltaTime());
+            sprHero.setX(sprHero.getX() - 500 * Gdx.graphics.getDeltaTime());
         }
         if (Gdx.input.isKeyPressed(Keys.A)) {
             sprEnemy.setX(sprEnemy.getX() - 200 * Gdx.graphics.getDeltaTime());
         }
         if (Gdx.input.isKeyPressed(Keys.UP)) {
-            sprSquare.setY(sprSquare.getY() + 500 * Gdx.graphics.getDeltaTime());
+            sprHero.setY(sprHero.getY() + 500 * Gdx.graphics.getDeltaTime());
         }
         if (Gdx.input.isKeyPressed(Keys.W)) {
             sprEnemy.setY(sprEnemy.getY() + 200 * Gdx.graphics.getDeltaTime());
         }
         if (Gdx.input.isKeyPressed(Keys.DOWN)) {
-            sprSquare.setY(sprSquare.getY() - 500 * Gdx.graphics.getDeltaTime());
+            sprHero.setY(sprHero.getY() - 500 * Gdx.graphics.getDeltaTime());
         }
         if (Gdx.input.isKeyPressed(Keys.S)) {
             sprEnemy.setY(sprEnemy.getY() - 200 * Gdx.graphics.getDeltaTime());
         }
         if (Gdx.input.isKeyPressed(Keys.RIGHT)) {
-            sprSquare.setX(sprSquare.getX() + 500 * Gdx.graphics.getDeltaTime());
+            sprHero.setX(sprHero.getX() + 500 * Gdx.graphics.getDeltaTime());
         }
         if (Gdx.input.isKeyPressed(Keys.D)) {
             sprEnemy.setX(sprEnemy.getX() + 200 * Gdx.graphics.getDeltaTime());
@@ -358,14 +358,14 @@ public class ScrPlay implements Screen {
         // make sure the bucket stays within the screen bounds
         /*if(bucket.x < 0) bucket.x = 0;
          if(bucket.x > 800 - 64) bucket.x = 800 - 64;*/
-        if (sprSquare.getX() < 0) {
-            sprSquare.setX(0);
+        if (sprHero.getX() < 0) {
+            sprHero.setX(0);
         }
         if (sprEnemy.getX() < 0) {
             sprEnemy.setX(0);
         }
-        if (sprSquare.getX() > 800 - 64) {
-            sprSquare.setX(800 - 64);
+        if (sprHero.getX() > 800 - 64) {
+            sprHero.setX(800 - 64);
         }
         if (sprEnemy.getX() > 800 - 64) {
             sprEnemy.setX(800 - 64);
@@ -394,7 +394,7 @@ public class ScrPlay implements Screen {
                 nLives--;
                 iter.remove();
             }
-            if (sprDot.getBoundingRectangle().overlaps(sprSquare.getBoundingRectangle())) {
+            if (sprDot.getBoundingRectangle().overlaps(sprHero.getBoundingRectangle())) {
                 dropSound.play();
                 nScore++;
                 iter.remove();
