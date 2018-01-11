@@ -31,6 +31,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.TimeUtils;
+import gdx.menu.GamMenu;
 
 //public class ScrPlay implements Screen, InputProcessor {
 //    Dude dud1;
@@ -196,7 +197,7 @@ import com.badlogic.gdx.utils.TimeUtils;
 
 public class ScrPlay implements Screen {
 
-    Game game;
+    GamMenu game;
     private Texture txDot;
     private Texture txHero;
     private Texture txEnemy;
@@ -214,7 +215,7 @@ public class ScrPlay implements Screen {
     private BitmapFont font;
     private int spawnMillis;
 
-    public ScrPlay(Game _game) {
+    public ScrPlay(GamMenu _game) {
         game = _game;
         // load the images for the droplet and the bucket, 64x64 pixels each
         txDot = new Texture(Gdx.files.internal("dot.png"));
@@ -403,6 +404,10 @@ public class ScrPlay implements Screen {
                 dropSound.play();
                 nScore--;
                 iter.remove();
+            }
+            if (nLives == 0){
+                //setScreen(scrGameover());
+                game.updateState(2);
             }
         }
     }
