@@ -21,7 +21,7 @@ public class GamMenu extends Game {
             setScreen(scrMenu);
         } else if (nScreen == 1) {
             setScreen(scrPlay);
-        } else if (nScreen ==2) {
+        } else if (nScreen == 2) {
             setScreen(scrGameover);
         } else if (nScreen == 3){
             setScreen(scrAnimation);
