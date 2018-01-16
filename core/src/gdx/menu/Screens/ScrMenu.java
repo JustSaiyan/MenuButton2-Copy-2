@@ -15,10 +15,10 @@ public class ScrMenu implements Screen, InputProcessor {
 
     Button btnPlay, btnAni;
     GamMenu gamMenu;
-    Texture txButtonP, txButtonT, txNamM;
+    Texture txButtonP, txButtonT, txTitleScreen;
     OrthographicCamera oc;
     SpriteBatch batch;
-    Sprite sprNamM;
+    Sprite sprTitleScreen;
 
     public ScrMenu(GamMenu _gamMenu) {  //Referencing the main class.
         gamMenu = _gamMenu;
@@ -32,11 +32,11 @@ public class ScrMenu implements Screen, InputProcessor {
         batch = new SpriteBatch();
         btnPlay = new Button(100, 50, 0, Gdx.graphics.getHeight() - 50, "Play.jpg");
         btnAni = new Button(100, 50, Gdx.graphics.getWidth() - 100, Gdx.graphics.getHeight() - 50, "Animation.jpg");
-        txNamM = new Texture("M.jpg");
-        sprNamM = new Sprite(txNamM);
-        sprNamM.setFlip(false, true);
-        sprNamM.setSize(60, 80);
-        sprNamM.setPosition(Gdx.graphics.getWidth() / 2 - 30, Gdx.graphics.getHeight() / 2 - 40);
+        txTitleScreen = new Texture("TitleScreen.png");
+        sprTitleScreen = new Sprite(txTitleScreen);
+        sprTitleScreen.setFlip(false, true);
+        sprTitleScreen.setSize(400, 400);
+        sprTitleScreen.setPosition(120, 40);
         Gdx.input.setInputProcessor(this);
     }
 
@@ -46,7 +46,7 @@ public class ScrMenu implements Screen, InputProcessor {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch.begin();
         batch.setProjectionMatrix(oc.combined);
-        sprNamM.draw(batch);
+        sprTitleScreen.draw(batch);
         btnPlay.draw(batch);
         btnAni.draw(batch);
         batch.end();
@@ -71,7 +71,7 @@ public class ScrMenu implements Screen, InputProcessor {
     @Override
     public void dispose() {
         batch.dispose();
-        txNamM.dispose();
+        txTitleScreen.dispose();
     }
 
     @Override
