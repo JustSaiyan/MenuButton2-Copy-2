@@ -14,11 +14,11 @@ import gdx.menu.GamMenu;
 public class ScrGameover implements Screen, InputProcessor {
 
     Button btnMenu, btnPlay;
-    OrthographicCamera oc;
-    Texture txNamQ;
+    OrthographicCamera oc; 
+    Texture txGameover;
     GamMenu gamMenu;
     SpriteBatch batch;
-    Sprite sprNamQuit;
+    Sprite sprGameover;
 
     public ScrGameover(GamMenu _gamMenu) {  //Referencing the main class.
         gamMenu = _gamMenu;
@@ -32,11 +32,11 @@ public class ScrGameover implements Screen, InputProcessor {
         batch = new SpriteBatch();
         btnPlay = new Button(100, 50, 0, Gdx.graphics.getHeight() - 50, "Play.jpg");
         btnMenu = new Button(100, 50, Gdx.graphics.getWidth() - 100, Gdx.graphics.getHeight() - 50, "Menu.jpg");
-        txNamQ = new Texture("Q.jpg");
-        sprNamQuit = new Sprite(txNamQ);
-        sprNamQuit.setFlip(false, true);
-        sprNamQuit.setSize(60, 80);
-        sprNamQuit.setPosition(Gdx.graphics.getWidth() / 2 - 30, Gdx.graphics.getHeight() / 2 - 40);
+        txGameover = new Texture("Gameover.jpg");
+        sprGameover = new Sprite(txGameover);
+        sprGameover.setFlip(false, true);
+        sprGameover.setSize(60, 80);
+        sprGameover.setPosition(Gdx.graphics.getWidth() / 2 - 30, Gdx.graphics.getHeight() / 2 - 40);
         Gdx.input.setInputProcessor(this);
     }
 
@@ -48,7 +48,7 @@ public class ScrGameover implements Screen, InputProcessor {
         batch.setProjectionMatrix(oc.combined);
         btnPlay.draw(batch);
         btnMenu.draw(batch);
-        sprNamQuit.draw(batch);
+        sprGameover.draw(batch);
         batch.end();
     }
 
@@ -75,7 +75,7 @@ public class ScrGameover implements Screen, InputProcessor {
     @Override
     public void dispose() {
         batch.dispose();
-        txNamQ.dispose();
+        txGameover.dispose();
     }
 
     @Override
