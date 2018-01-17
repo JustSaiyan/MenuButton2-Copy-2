@@ -1,5 +1,6 @@
 package gdx.menu.Screens;
 
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
@@ -13,15 +14,21 @@ import gdx.menu.GamMenu;
 
 public class ScrMenu implements Screen, InputProcessor {
 
+    private Music firemusic;
     Button btnPlay, btnAni;
     GamMenu gamMenu;
     Texture txButtonP, txButtonT, txTitleScreen;
     OrthographicCamera oc;
     SpriteBatch batch;
     Sprite sprTitleScreen;
+    int nScreen;
 
     public ScrMenu(GamMenu _gamMenu) {  //Referencing the main class.
         gamMenu = _gamMenu;
+        firemusic = Gdx.audio.newMusic(Gdx.files.internal("Firesounds.wav"));
+        firemusic.setLooping(true);
+        firemusic.play();
+        
     }
 
     @Override
