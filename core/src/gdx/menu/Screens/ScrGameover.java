@@ -35,14 +35,14 @@ public class ScrGameover implements Screen, InputProcessor {
         txGameover = new Texture("Gameover.jpg");
         sprGameover = new Sprite(txGameover);
         sprGameover.setFlip(false, true);
-        sprGameover.setSize(60, 80);
-        sprGameover.setPosition(Gdx.graphics.getWidth() / 2 - 30, Gdx.graphics.getHeight() / 2 - 40);
+        sprGameover.setSize(400, 400);
+        sprGameover.setPosition(120, 40);
         Gdx.input.setInputProcessor(this);
     }
 
     @Override
     public void render(float Delta) {
-        Gdx.gl.glClearColor(0, 1, 1, 1); //Cyan background.
+        Gdx.gl.glClearColor(0, 0, 0, 0); //Cyan background.
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch.begin();
         batch.setProjectionMatrix(oc.combined);

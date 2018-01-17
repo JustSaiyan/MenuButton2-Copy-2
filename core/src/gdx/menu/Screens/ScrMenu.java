@@ -42,7 +42,7 @@ public class ScrMenu implements Screen, InputProcessor {
 
     @Override
     public void render(float delta) {
-        Gdx.gl.glClearColor(0, 1, 0, 1); //Green background.
+        Gdx.gl.glClearColor(0, 0, 0, 0); //Green background.
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch.begin();
         batch.setProjectionMatrix(oc.combined);
