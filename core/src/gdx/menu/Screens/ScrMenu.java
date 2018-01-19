@@ -14,7 +14,7 @@ import gdx.menu.GamMenu;
 
 public class ScrMenu implements Screen, InputProcessor {
 
-    private Music firemusic;
+    private Music Menumusic;
     Button btnPlay, btnAni;
     GamMenu gamMenu;
     Texture txButtonP, txButtonT, txTitleScreen;
@@ -25,12 +25,11 @@ public class ScrMenu implements Screen, InputProcessor {
 
     public ScrMenu(GamMenu _gamMenu) {  //Referencing the main class.
         gamMenu = _gamMenu;
-        firemusic = Gdx.audio.newMusic(Gdx.files.internal("Firesounds.wav"));
-        firemusic.setLooping(true);
-        firemusic.play();
+        Menumusic = Gdx.audio.newMusic(Gdx.files.internal("Menumusic.wav"));
+        Menumusic.setLooping(true);
+        Menumusic.play();
         
     }
-
     @Override
     public void show() {
         oc = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
@@ -64,7 +63,7 @@ public class ScrMenu implements Screen, InputProcessor {
     }
 
     @Override
-    public void pause() {
+    public void pause() {       
     }
 
     @Override
@@ -79,6 +78,7 @@ public class ScrMenu implements Screen, InputProcessor {
     public void dispose() {
         batch.dispose();
         txTitleScreen.dispose();
+        Menumusic.dispose();
     }
 
     @Override
@@ -100,8 +100,9 @@ public class ScrMenu implements Screen, InputProcessor {
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         if (button == Input.Buttons.LEFT) {
             if (isHit(screenX, screenY, btnPlay)) {
-                System.out.println("Hit Play");
+                System.out.println("Hit Play");             
                 gamMenu.updateState(1);
+                Menumusic.stop();
             } else if (isHit(screenX, screenY, btnAni)) {
                 System.out.println("Hit Animation");
                 gamMenu.updateState(3);
